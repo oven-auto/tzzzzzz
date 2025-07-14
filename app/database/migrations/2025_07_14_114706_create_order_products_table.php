@@ -17,6 +17,7 @@ class CreateOrderProductsTable extends Migration
             $table->foreignId('order_id')->references('id')->on('orders')->onDelete('cascade');//заказ
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');//ид продукта
             $table->integer('price');//фикс цены продукта на момент создания заказа
+            $table->integer('count');
         });
     }
 

@@ -17,18 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 Route::prefix('/catalog')->group(function(){
-    Route::get('', CatalogController::class);
+    Route::get('',                              CatalogController::class);
 });
 
 
 
-Route::prefix('/order')->group(function(){
-    Route::get('/', [CreateOrderController::class, 'index']);
-    Route::patch('', ApproveOrderController::class);
+Route::prefix('')->group(function(){
+    Route::post('/create-order',                 CreateOrderController::class);
+    Route::patch('/approve-order/{orderId}',     ApproveOrderController::class);
 });

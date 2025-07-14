@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Http\DTO\OrderDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderCreateRequest extends FormRequest
@@ -26,8 +27,15 @@ class OrderCreateRequest extends FormRequest
         return [
             'client_id' => 'required|exists:clients,id',
             'products' => 'required|array',
-            'products.*.id' => 'required|exists:products,id',
+            'products.*.product_id' => 'required|exists:products,id',
             'products.*.count' => 'required|numeric',
         ];
+    }
+
+
+
+    public function getDTO()
+    {
+        return OrderDTO::fromArray($this->validated());
     }
 }

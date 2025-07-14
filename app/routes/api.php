@@ -29,6 +29,6 @@ Route::prefix('/catalog')->group(function(){
 
 
 Route::prefix('/order')->group(function(){
-    Route::post('', CreateOrderController::class);
+    Route::get('/', [CreateOrderController::class, 'index']);
     Route::patch('', ApproveOrderController::class);
 });
